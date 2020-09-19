@@ -14,6 +14,17 @@ public class BaseEntity {
     @Temporal(TemporalType.TIMESTAMP)
     private Date timeRecorded;
 
+    @Transient
+    private String action;
+
+    public String getAction() {
+        return action;
+    }
+
+    public void setAction(String action) {
+        this.action = action;
+    }
+
     public int getId() {
         return id;
     }

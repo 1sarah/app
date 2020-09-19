@@ -41,8 +41,10 @@
           <div class="content" >
             <form action="<%=request.getContextPath()%>/tenants_add" method="POST">
               <input placeholder="Name" name="name" type="text" required />
+              <input placeholder="ID-NO" name="id_no" type="text" required />
               <input placeholder="House_No" name="houseno" type="text" required />
               <input placeholder="Rent_Paid" name="rent" type="prize" required />
+              <input placeholder="Email" name="email" type="text" required />
               <input placeholder="Date" type="size" name="date" required />
               <div class="wrapper">
                 <button class="button">SUBMIT</button>
@@ -123,7 +125,22 @@
               <td>${rentPaid}</td>
               <td>${date}</td>
               <td>
-              <a href>Edit</a>
+            <button><a href="#x1" rel="modal:open">Edit</a></button>
+
+              <div id="x1" class="modal">
+                        <h1 style="text-align: center">Add Tenant</h1>
+                        <div class="content" >
+                          <form action="<%=request.getContextPath()%>/tenants_edit" method="POST">
+                            <input placeholder="Name" name="name" type="text" required value="${name}" />
+                            <input placeholder="House_No" name="houseno" type="text" required value="${houseNo}" />
+                            <input placeholder="Rent_Paid" name="rent" type="prize" required value="${rentPaid}" />
+                            <input placeholder="Date" type="size" name="date" required  value="${date}"/>
+                            <div class="wrapper">
+                              <button class="button">SUBMIT</button>
+                            </div>
+                          </form>
+                        </div>
+                      </div>
               </td>
               <td>
               <button class="delbtn" onclick="delItems(this)" data-id="${tenantId}">Delete</button>
@@ -136,13 +153,11 @@
         .catch((error) => {
           console.log("There is an error");
         });
-
       //Deleting an item from the database
        function delItems(e) {
         const deleteBtn = document.querySelector(".delbtn");
         console.log(e);
         let xhr = new XMLHttpRequest();
-
         xhr.open(
           "delete",
           "/my-app/tenants_list?" + `id=${deleteBtn.dataset.id}`,

@@ -24,8 +24,13 @@ public class TenantList extends HttpServlet {
      */
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
         Session session = HibernateHelper.getSessionFactory().openSession();
-        List<Tenant> tenants = session.createQuery("FROM Tenant s").getResultList();
+        List<Tenant> tenants = session.createQuery("FROM Tenant s ").getResultList();
         ObjectMapper objectMapper = new ObjectMapper();
+
+        String name = request.getParameter("name");
+        System.out.println("==========================================");
+        System.out.println(name);
+
         try{
             String json = objectMapper.writerWithDefaultPrettyPrinter().writeValueAsString(tenants);
             response.getWriter().println(json);

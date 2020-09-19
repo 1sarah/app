@@ -2,9 +2,10 @@ package models;
 
 import javax.persistence.*;
 
-//@NamedQueries({
-//        @NamedQuery(name = "", query = "SELECT u FROM User u WHERE u.email=:email and u.password=:pwd")
-//})
+@NamedQueries({
+        @NamedQuery(name = User.USER_FIND_BY_NAME_PWD, query = "SELECT u FROM User u WHERE u.name=:name and u.password=:pwd")
+})
+
 @Entity
 @Table(name = "users")
 public class User {
@@ -24,6 +25,9 @@ public class User {
 
     @Column
     private String role;
+
+    @Transient
+    public static final String USER_FIND_BY_NAME_PWD = "User.findByNamePwd";
 
 
 

@@ -26,12 +26,16 @@ public class AddTenant extends HttpServlet {
             String name = request.getParameter("name");
             String houseno = request.getParameter("houseno");
             String rent = request.getParameter("rent");
+            String email = request.getParameter("email");
+            String Id_No = request.getParameter("id_no");
 
             tenant.setPerson(new Person());
             tenant.setContact(new Contact());
             tenant.getPerson().setName(name);
             tenant.setHouseNo(houseno);
             tenant.setRentPaid(rent);
+            tenant.getContact().setEmail(email);
+            tenant.getPerson().setIdNo(Id_No);
 
             session.save(tenant);
             tx.commit();

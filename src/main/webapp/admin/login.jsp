@@ -14,7 +14,7 @@
 
  <div class="container col-md-8 col-md-offset-3" style="overflow: auto">
   <h1>Login Here</h1>
-  <form action="<%=request.getContextPath()%>/ogin" method="Post">
+  <form action="<%=request.getContextPath()%>/in" method="Post">
    <div class="form-group">
     <label for="uname">User Name:</label> <input type="text"
      class="form-control" id="username" placeholder="User Name"

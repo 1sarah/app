@@ -16,10 +16,10 @@ import java.util.List;
 public class Mainlandlod extends HttpServlet {
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
         Session session = HibernateHelper.getSessionFactory().openSession();
-        List<models.Tenant> tenants = session.createQuery("FROM Landlord s").getResultList();
+        List<models.Landlord> landlord = session.createQuery("FROM Landlord s").getResultList();
         ObjectMapper objectMapper = new ObjectMapper();
         try{
-            String json = objectMapper.writerWithDefaultPrettyPrinter().writeValueAsString(tenants);
+            String json = objectMapper.writerWithDefaultPrettyPrinter().writeValueAsString(landlord);
             response.getWriter().println(json);
         } catch(Exception e) {
             //e.printStackTrace();

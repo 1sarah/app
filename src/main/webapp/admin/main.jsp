@@ -1,5 +1,32 @@
 <!DOCTYPE html>
+
 <html lang="en">
+<script>
+        $(function() {
+            // Check if a user session exists. Set the links in the navbar accordingly.
+            fetch('http://localhost:8080/my-app/login')
+            .then(
+                function(response) {
+                    if (response.status !== 200) {
+                        console.log('Looks like there was a problem. Status Code: ' + response.status);
+                        return;
+                    }
+                    response.json().then(data => {
+                        if(data.name != null) {
+                            let name = data.name.toUpperCase();
+                            let role = data.role.toUpperCase();
+                            console.log('A user is logged in');
+                            $('#auth-links').append(`<a href="#" id="user-link"> <i class="fa fa-user" aria-hidden="true"></i> ${name} (${role})</a>`);
+                        }
+                        else {
+                            console.log('No user is logged in');
+                        }
+                    });
+                }
+            )
+            .catch(err => console.log('Fetch Error :-S', err));
+        });
+    </script>
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -28,7 +55,12 @@
 
       <main class="main">
         <div class="main-header">
-          <div class="main-header__heading">Hello Username</div>
+          <div class="main-header__heading">
+          <%
+          String username=(String)session.getAttribute("user");
+          out.print("Hello " + username);
+          %>
+          </div>
           <div class="main-header__updates">
             <!--                <div class="box">-->
             <!--                  <a class="button" href="#popup1">ADD</a>-->

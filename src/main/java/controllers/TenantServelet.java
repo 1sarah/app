@@ -5,13 +5,12 @@ import database.HibernateHelper;
 import models.Tenant;
 import org.hibernate.Session;
 
-import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.List;
-@WebServlet(urlPatterns = {"/tenants_details"})
+///@WebServlet(urlPatterns = {"/tenants_details"})
 public class TenantServelet extends HttpServlet {
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
         Session session = HibernateHelper.getSessionFactory().openSession();
